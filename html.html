@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<div class="pure-g">
+    <div class="pure-u-1-6">
+        <div class="pure-menu mymenu" style="position:fixed">
+            <span class="pure-menu-heading">Hello World</span>
+        </div>
+    </div>
+    <div class="pure-u-5-6 mybody">
+
+    </div>
+</div>
+
+<pre id="showdown" style="display:none;">
+#hello, markdown!
+
+this is my page for project document writen by bootstrap
+
+##for link 
+
+> The overriding design goal for Markdown's 
+>> or formatting instructions.
+>>fdfd
+>> fsff
+
+##Table show
+
+| h1    |    h2   |      h3 |
+|:------|:-------:|--------:|
+| 100   | [a][1]  | ![b][2] |
+| *foo* | **bar** | ~~baz~~ |
+| 100   | [a][1]  | ![b][2] |
+| *foo* | **bar** | ~~baz~~ |
+| 100   | [a][1]  | ![b][2] |
+| *foo* | **bar** | ~~baz~~ |
+
+
+## task list Gollum
+
+- [x] This task is done
+- [ ] This is still pending
+
+
+## Code Pretty 
+```javascript
+var a = "xxx";
+(function(){
+var myext = function(converter) {
+return [
+// Replace escaped @ symbols
+{ type: 'output', filter: function(text) {
+var $ext = $('<div>' + text + '</div>');
+$ext.find('table').addClass('pure-table pure-table-striped');
+$ext.find('pre').addClass('prettyprint');
+return $ext.html();
+} }
+];
+};
+```
+
+
+</pre>
+
+<script src="markdoc.js" type="text/javascript"></script>
+
+</body>
+</html>
