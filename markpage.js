@@ -72,8 +72,10 @@ function markpage() {
     this.loadDocCss= function(){
         var css = [
             'h1 {padding:0 0 20px 0}'
-            ,'.docmenu { position:fixed;}'
-            ,'ul li {margin:20px;}'
+            ,'.docmenu { position:fixed; height:100%; width:20%; }'
+            ,'h2,h3,h4,h5,h6{ padding: 0 0 10px 0; margin-top:1.5em; margin-bottom:16px; border-bottom: 1px solid #eee;}'
+            ,'ul li {margin: 20px 5px;}'
+            ,'@media print {.docmenu { display:none; }  }'
             ];
         // can't not use $ before zepto/jquery load
         var style = self.mkdom('style', {type: 'text/css'});
@@ -91,9 +93,9 @@ function markpage() {
     }
 
     this.loadResource = function(cb){
-        self.loadDocCss();
         self.loadcss('http://cdn.bootcss.com/marx/1.3.0/marx.min.css');
         self.loadcss('http://cdn.bootcss.com/highlight.js/8.9.1/styles/railscasts.min.css');
+        self.loadDocCss();
         // expect 3 js resource to load
         self.loadjs('http://cdn.bootcss.com/zepto/1.1.6/zepto.min.js', checkResourceLoad);
         self.loadjs('http://cdn.bootcss.com/showdown/1.3.0/showdown.min.js', checkResourceLoad);
@@ -128,14 +130,27 @@ function initShowdownExt(){
         { type: 'output'
             , filter: function(text) {
                 var $ext = $('<div>' + text + '</div>');
-                $ext.find('table');
                 $ext.find('pre').addClass('prettyprint');
-                var $ul = $('<ul class="menu" />');
+                var $root = $('<ul class="menu H1" />');
+                var $docmenu = $('.docmenu');
+                $docmenu.append($root);
+
                 $ext.find('h1,h2,h3,h4,h5,h6').each(function(i, el){
-                    $ul.append($('<li />').html('<a href="#' + $(el).attr('id') + '" >' + $(el).html() + '</a>'));
+                    var $el = $(el);
+                    var tagName = $el[0].tagName;
+                    var tagNum = tagName.replace('H', '');
+                    var linkHtml = '<a href="#' + $el.attr('id') + '" >' + $el.html() + '</a>';
+                    var parentTag = [];
+                    for(var i = 1; i <=  tagNum; i++){
+                        parentTag.push('.H' + i);
+                    }
+                    var $parentUL = $docmenu.find(parentTag.join(',')).last();
+                    var $li = $('<li />').html(linkHtml);
+                    $li.append('<ul class="H' + (++tagNum)+ '" />');
+                    $parentUL.append($li);
                 });
-                $('.docmenu').append($ul);
-                return $ext.html();}
+                return $ext.html();
+            }
         }
         ];
     };
