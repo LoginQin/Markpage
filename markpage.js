@@ -71,9 +71,9 @@ function markpage() {
 
     this.loadDocCss= function(){
         var css = [
-            'h1 {padding:0 0 20px 0}'
+            'h1 {padding:0 0 10px 0;}'
             ,'.docmenu { position:fixed; height:100%; width:20%; }'
-            ,'h2,h3,h4,h5,h6{ padding: 0 0 10px 0; margin-top:1.5em; margin-bottom:16px; }'
+            ,'h2,h3,h4{ padding: 0 0 5px 0; margin-top:1.5em; margin-bottom:16px; }'
             ,'h2,h3,h4 {border-bottom: 1px solid #eee;}'
             ,'ul li {margin: 20px 5px;}'
             ,'p {line-height: 2;}'
