@@ -1,5 +1,12 @@
 /**
+ * markdoc - markdown document 
  *
+ * a markdown way to write document, just import 'markdoc.js' in your html file, 
+ *
+ * And go ahead to writing your markdown document in a <pre id="markdoc"> html tag
+ *
+ * @author qinwei
+ * @email  qinwei081@gmail.com
  *
  **/
 function markdoc() {
@@ -40,19 +47,29 @@ function markdoc() {
         jsnode.onload = onloadCallback;
     }
 
+    this.loadDocCss= function(){
+        var css = [
+            'h1 {padding:0 0 20px 0}'
+            ,'.docmenu { position:fixed;}'
+            ,'ul li {margin:20px;}'
+            ];
+        // can't not use $ before zepto/jquery load
+        var style = self.mkdom('style', {type: 'text/css'});
+        style.appendChild(document.createTextNode(css.join('')));
+        self.addChildNode('head', style);
+    }
+
+    /**
+     * This function will invoke when all resource loaded
+     */
     function resourceOnload() {
         initShowdownExt();
         hljs.initHighlightingOnLoad(); 
         onLoadCallback();
-        var css = [
-            'h1 {padding:0 0 20px 0}'
-            ,'.mymenu { position:fixed;}'
-            ,'ul li {margin:20px;}'
-            ];
-        $('head').append($('<style type="text/css" />').text(css.join('')));
     }
 
     this.loadResource = function(cb){
+        self.loadDocCss();
         self.loadcss('http://cdn.bootcss.com/marx/1.3.0/marx.min.css');
         self.loadcss('http://cdn.bootcss.com/highlight.js/8.9.1/styles/railscasts.min.css');
         // expect 3 js resource to load
@@ -69,10 +86,13 @@ function markdoc() {
     }
 
     this.render = function(id){
-        var text = $('#' + id ).text(); 
+        var $doc = $('#' + id ).hide();
+        $('body').append('<div class="docmenu"></div><main><section class="docbody"></section></main>');
+        $('#markdoc').hide();
+        var text = $doc.text(); 
         var converter = new showdown.Converter({ tables: true, tasklists: true,  omitExtraWLInCodeBlocks: true,parseImgDimensions:true,  ghCodeBlocks: true, extensions: ['markdoc']}),
             html      = converter.makeHtml(text);
-        $('.mybody').append(html);
+        $('.docbody').append(html);
     }
 }
 
@@ -91,7 +111,7 @@ function initShowdownExt(){
                 $ext.find('h1,h2,h3,h4,h5,h6').each(function(i, el){
                     $ul.append($('<li />').html('<a href="#' + $(el).attr('id') + '" >' + $(el).html() + '</a>'));
                 });
-                $('.mymenu').append($ul);
+                $('.docmenu').append($ul);
                 return $ext.html();}
         }
         ];
@@ -101,11 +121,9 @@ function initShowdownExt(){
     if (typeof window !== 'undefined' && window.showdown && window.showdown.extensions) {
         window.showdown.extensions.markdoc = markdownMarkdocExt;
     }
-    // Server-side export
-    if (typeof module !== 'undefined') module.exports = markdownMarkdocExt;
 };
 
 var markdoc = new markdoc();
 markdoc.loadResource(function(){
-    markdoc.render('showdown');
+    markdoc.render('markdoc');
 });
