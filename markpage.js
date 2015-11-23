@@ -3,13 +3,13 @@
  *
  * An easy way to to write markdown document base on `showdownjs`, support table, code hightlight and navigate.
  *
- * Just import one 'markdoc.js' file in your html file, 
+ * Just import one 'markpage.js' file in your html file, 
  *
- * And go ahead to writing your markdown document in a <pre id="markdoc"> html tag
+ * And go ahead to writing your markdown document in a <pre id="markpage"> html tag
  *
  * It can be translated into HTML automatically, and generate a simple navigate.
  *
- * The markdoc.js will load other js/css file automatically. So,
+ * The markpage.js will load other js/css file automatically. So,
  *
  * You only need to care about the specific content of all you have to write
  *
@@ -21,7 +21,7 @@
  * writing you document in here
  * </pre>
  *
- * <!-- only need to import markdoc.js file  -->
+ * <!-- only need to import markpage.js file  -->
  * <script src="markpage.js" type="text/javascript"></script
  *
  * ----------------------------------------------------------
