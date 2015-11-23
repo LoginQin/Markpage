@@ -1,4 +1,4 @@
-<pre id="markdoc">
+<pre id="markpage">
 #hello, markdown!
 
 this is my page for project document writen by bootstrap
@@ -33,18 +33,11 @@ this is my page for project document writen by bootstrap
 var a = "xxx";
 (function(){
 var myext = function(converter) {
-return [
-// Replace escaped @ symbols
-{ type: 'output', filter: function(text) {
-    var $ext = $('<div>' + text + '</div>');
-    $ext.find('table').addClass('pure-table pure-table-striped');
-    $ext.find('pre').addClass('prettyprint');
-    return $ext.html();
-} }
-];
+    // pretty 
+    return [""];
 };
 ```
+</pre>
 
 
-
-<script src="markdoc.js" type="text/javascript"></script>
+<script src="markpage.js" type="text/javascript"></script>
