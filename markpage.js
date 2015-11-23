@@ -73,8 +73,10 @@ function markpage() {
         var css = [
             'h1 {padding:0 0 20px 0}'
             ,'.docmenu { position:fixed; height:100%; width:20%; }'
-            ,'h2,h3,h4,h5,h6{ padding: 0 0 10px 0; margin-top:1.5em; margin-bottom:16px; border-bottom: 1px solid #eee;}'
+            ,'h2,h3,h4,h5,h6{ padding: 0 0 10px 0; margin-top:1.5em; margin-bottom:16px; }'
+            ,'h2,h3,h4 {border-bottom: 1px solid #eee;}'
             ,'ul li {margin: 20px 5px;}'
+            ,'p {line-height: 2;}'
             ,'@media print {.docmenu { display:none; }  }'
             ];
         // can't not use $ before zepto/jquery load
@@ -135,7 +137,7 @@ function initShowdownExt(){
                 var $docmenu = $('.docmenu');
                 $docmenu.append($root);
 
-                $ext.find('h1,h2,h3,h4,h5,h6').each(function(i, el){
+                $ext.find('h1,h2,h3,h4').each(function(i, el){
                     var $el = $(el);
                     var tagName = $el[0].tagName;
                     var tagNum = tagName.replace('H', '');
