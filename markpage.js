@@ -111,7 +111,8 @@ function markpage() {
         var $doc = $(selector).hide();
         $('body').append('<div class="docmenu"></div><main><section class="docbody"></section></main><footer>MarkPage</footer>');
         $('#markpage').hide();
-        var text = $doc.text(); 
+        var text = $doc.html();
+        text = text.replace(/&gt;/ig, ">");
         var converter = new showdown.Converter({ tables: true, tasklists: true,  omitExtraWLInCodeBlocks: true,parseImgDimensions:true,  ghCodeBlocks: true, extensions: ['markpage']}),
             html      = converter.makeHtml(text);
         $('.docbody').append(html);
