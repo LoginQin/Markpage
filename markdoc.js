@@ -1,9 +1,32 @@
 /**
- * markdoc - markdown document 
+ * Markdoc - Markdown document 
  *
- * a markdown way to write document, just import 'markdoc.js' in your html file, 
+ * An easy way to to write markdown document base on `showdownjs`, support table, code hightlight and navigate.
+ *
+ * Just import one 'markdoc.js' file in your html file, 
  *
  * And go ahead to writing your markdown document in a <pre id="markdoc"> html tag
+ *
+ * It can be translated into HTML automatically, and generate a simple navigate.
+ *
+ * The markdoc.js will load other js/css file automatically. So,
+ *
+ * You only need to care about the specific content of all you have to write
+ *
+ * The final html file like as follow:
+ * ----------------------------------------------------------
+ *
+ * <pre id="markdoc">
+ * ###markdown document
+ * writing you document in here
+ * </pre>
+ *
+ * <!-- only need to import markdoc.js file  -->
+ * <script src="markdoc.js" type="text/javascript"></script
+ *
+ * ----------------------------------------------------------
+ *
+ * NOTE: Not support for IE8 or lower version. To make life better, upgrade your browser.
  *
  * @author qinwei
  * @email  qinwei081@gmail.com
@@ -11,7 +34,6 @@
  **/
 function markdoc() {
     var self = this;
-    var isLoadResource = false;
     var resourceNumExpect = 3; // expect load js resource number
     var loadedResource = 0; // current loaded
     var onLoadCallback = function(){};
@@ -65,7 +87,7 @@ function markdoc() {
     function resourceOnload() {
         initShowdownExt();
         hljs.initHighlightingOnLoad(); 
-        onLoadCallback();
+        onLoadCallback.call(self);
     }
 
     this.loadResource = function(cb){
@@ -85,8 +107,8 @@ function markdoc() {
         onLoadCallback = cb;
     }
 
-    this.render = function(id){
-        var $doc = $('#' + id ).hide();
+    this.render = function(selector){
+        var $doc = $(selector).hide();
         $('body').append('<div class="docmenu"></div><main><section class="docbody"></section></main>');
         $('#markdoc').hide();
         var text = $doc.text(); 
@@ -123,7 +145,6 @@ function initShowdownExt(){
     }
 };
 
-var markdoc = new markdoc();
-markdoc.loadResource(function(){
-    markdoc.render('markdoc');
+new markdoc().loadResource(function(){
+    this.render('#markdoc');
 });
