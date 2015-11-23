@@ -96,7 +96,6 @@ function markpage() {
 
     this.loadResource = function(cb){
         self.loadcss('http://cdn.bootcss.com/marx/1.3.0/marx.min.css');
-        self.loadcss('http://cdn.bootcss.com/highlight.js/8.9.1/styles/railscasts.min.css');
         self.loadDocCss();
         // expect 3 js resource to load
         self.loadjs('http://cdn.bootcss.com/zepto/1.1.6/zepto.min.js', checkResourceLoad);
@@ -113,10 +112,14 @@ function markpage() {
 
     this.render = function(selector){
         var $doc = $(selector).hide();
-        $('body').append('<div class="docmenu"></div><main><section class="docbody"></section></main><footer>MarkPage</footer>');
+        var theme = $doc.attr('data-highlight-theme') || 'railscasts';
+        self.loadcss('http://cdn.bootcss.com/highlight.js/8.9.1/styles/' + theme + '.min.css');
+        $('body').append('<div class="docmenu"></div><main><section class="docbody"></section></main><footer>Render By MarkPage</footer>');
         $('#markpage').hide();
         var text = $doc.html();
         text = text.replace(/&gt;/ig, ">");
+        text = text.replace(/&lt;/ig, "<");
+        text = text.replace(/&amp;/ig, "&");
         var converter = new showdown.Converter({ tables: true, tasklists: true,  omitExtraWLInCodeBlocks: true,parseImgDimensions:true,  ghCodeBlocks: true, extensions: ['markpage']}),
             html      = converter.makeHtml(text);
         $('.docbody').append(html);
