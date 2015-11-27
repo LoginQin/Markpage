@@ -120,7 +120,18 @@ function markpage() {
         text = text.replace(/&gt;/ig, ">");
         text = text.replace(/&lt;/ig, "<");
         text = text.replace(/&amp;/ig, "&");
-        var converter = new showdown.Converter({ tables: true, tasklists: true,  omitExtraWLInCodeBlocks: true,parseImgDimensions:true,  ghCodeBlocks: true, extensions: ['markpage']}),
+        /**
+         * Setting Document In: https://github.com/showdownjs/showdown
+         */
+        var converter = new showdown.Converter({ 
+            tables: true, //table support
+            tasklists: true, //tasklists support
+            strikethrough: true,  // Enable support for strikethrough syntax. ~~HH~~
+            literalMidWordUnderscores: true, // ignore `list_by_name` transfer to <em> or <strong> 
+            omitExtraWLInCodeBlocks: true, 
+            parseImgDimensions:true,  
+            ghCodeBlocks: true, 
+            extensions: ['markpage']}),
             html      = converter.makeHtml(text);
         $('.docbody').append(html);
     }
