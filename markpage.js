@@ -96,10 +96,6 @@ function markpage() {
     function resourceOnload() {
         initShowdownExt();
         hljs.initHighlightingOnLoad(); 
-        mermaidAPI.initialize({
-            startOnLoad:true
-        });
-
         onLoadCallback.call(self);
     }
 
@@ -144,11 +140,18 @@ function markpage() {
             ghCodeBlocks: true, 
             extensions: ['markpage']}),
             html      = converter.makeHtml(text);
+        var map = {};
         $('.docbody').append(html).find('.mermaid').each(function(i, el){
             var cb = function(svgGraph){
-                $(el).html(svgGraph);
+                var id = $('<div />').html(svgGraph).find('svg').attr('id');
+                map[id].html(svgGraph);
             };
-            mermaidAPI.render('graph-' + i, $(el).text().replace(/^\s+/, ""), cb);
+            var id = 'graph-' + i;
+            var data = $(el).text().replace(/^\s+/, "");
+            map[id] = $(el);
+            if(mermaidAPI.parse(data)){
+                mermaidAPI.render(id, data, cb, el);
+            }
         });
     }
 }
