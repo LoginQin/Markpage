@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+    <link media="all" rel="stylesheet" href="http://cdn.bootcss.com/mermaid/0.5.5/mermaid.min.css" type="text/css" />
+    <script src="http://cdn.bootcss.com/mermaid/0.5.5/mermaid.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <div class="mermaid">
+sequenceDiagram
+A->> B: Query
+B->> C: Forward query
+Note right of C: Thinking...
+C->> B: Response
+B->> A: Forward response
+A->> D: new 
+神奇->>小子: 好啊
+
+</div>
+	
+<script src="mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+    
+</body>
+</html>

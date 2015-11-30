@@ -34,7 +34,7 @@
  **/
 function markpage() {
     var self = this;
-    var resourceNumExpect = 3; // expect load js resource number
+    var resourceNumExpect = 4; // expect load js resource number
     var loadedResource = 0; // current loaded
     var onLoadCallback = function(){};
 
@@ -73,11 +73,16 @@ function markpage() {
         var css = [
             'h1 {padding:0 0 10px 0;}'
             ,'.docmenu { position:fixed; height:100%; width:20%; }'
-            ,'h2,h3,h4{ padding: 0 0 5px 0; margin-top:1.5em; margin-bottom:16px; }'
-            ,'h2,h3,h4 {border-bottom: 1px solid #eee;}'
+            ,'h2, h3, h4{ padding: 0 0 5px 0; margin-top:1.5em; }'
+            ,'h3, h4{ margin-bottom:0.5em; }'
+            ,'h2 {border-bottom: 1px solid #eee; margin-bottom:16px;}'
             ,'ul li {margin: 20px 5px;}'
             ,'p {line-height: 2;}'
+            ,'code { padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; border-radius: 4px; }'
+            ,'.mermaid { max-height: 400px;}'
+            ,'main { max-width: 90rem; }'
             ,'@media print {.docmenu { display:none; }  }'
+            ,'@media screen and (max-width: 1180px) {.docmenu {position: relative; width:100%; height:auto;display:none;} }'
             ];
         // can't not use $ before zepto/jquery load
         var style = self.mkdom('style', {type: 'text/css'});
@@ -91,16 +96,22 @@ function markpage() {
     function resourceOnload() {
         initShowdownExt();
         hljs.initHighlightingOnLoad(); 
+        mermaidAPI.initialize({
+            startOnLoad:true
+        });
+
         onLoadCallback.call(self);
     }
 
     this.loadResource = function(cb){
         self.loadcss('http://cdn.bootcss.com/marx/1.3.0/marx.min.css');
+        self.loadcss('http://cdn.bootcss.com/mermaid/0.5.5/mermaid.min.css');
         self.loadDocCss();
         // expect 3 js resource to load
         self.loadjs('http://cdn.bootcss.com/zepto/1.1.6/zepto.min.js', checkResourceLoad);
         self.loadjs('http://cdn.bootcss.com/showdown/1.3.0/showdown.min.js', checkResourceLoad);
         self.loadjs('http://cdn.bootcss.com/highlight.js/8.9.1/highlight.min.js', checkResourceLoad);
+        self.loadjs('http://cdn.bootcss.com/mermaid/0.5.5/mermaid.min.js', checkResourceLoad);
         if(typeof cb == 'function'){
             onLoadCallback = cb;
         }
@@ -133,10 +144,14 @@ function markpage() {
             ghCodeBlocks: true, 
             extensions: ['markpage']}),
             html      = converter.makeHtml(text);
-        $('.docbody').append(html);
+        $('.docbody').append(html).find('.mermaid').each(function(i, el){
+            var cb = function(svgGraph){
+                $(el).html(svgGraph);
+            };
+            mermaidAPI.render('graph-' + i, $(el).text().replace(/^\s+/, ""), cb);
+        });
     }
 }
-
 /**
  * init showdown ext after load showdown.js
  */

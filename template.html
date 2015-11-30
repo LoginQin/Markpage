@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-<pre id="markpage">
+<pre id="markpage" style="display:none;">
 #这是一个神奇的文档
 一个markpage.js就能搞定一切
 回车
@@ -63,6 +63,31 @@ h1
 
 ```
 
+##使用mermaid
+mermaid 美人鱼, 是一个类似markdown用文本语法来描述文档图形(流程图, 时序图, 甘特图)的工具,既然markdown可以描述HTML结构的文档, 那么为何不可以描述图形? 因此有了mermaid,  您可以在文档中嵌入一段mermaid文本来生成SVG形式的图形
+比如插入下面的代码(包括div.mermaid):
+```html
+<div class="mermaid">
+sequenceDiagram
+A->> B: Query
+B->> C: Forward query
+Note right of C: Thinking...
+C->> B: Response
+B->> A: Forward response
+
+</div>
+```
+#####markpage同样会调用mermaid渲染并生成一个时序图
+<div class="mermaid">
+sequenceDiagram
+A->> B: Query
+B->> C: Forward query
+Note right of C: Thinking...
+C->> B: Response
+B->> A: Forward response
+
+</div>
+具体的图形语法可以参考 [mermaid](http://knsv.github.io/mermaid/)
 
 ##试试看
 这一切只需要一个markpage.js
