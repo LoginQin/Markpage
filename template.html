@@ -63,7 +63,7 @@ h1
 
 ```
 
-##使用mermaid
+##使用mermaid生成图形
 mermaid 美人鱼, 是一个类似markdown用文本语法来描述文档图形(流程图, 时序图, 甘特图)的工具,既然markdown可以描述HTML结构的文档, 那么为何不可以描述图形? 因此有了mermaid,  您可以在文档中嵌入一段mermaid文本来生成SVG形式的图形
 比如插入下面的代码(包括div.mermaid):
 ```html
@@ -87,7 +87,9 @@ C->> B: Response
 B->> A: Forward response
 
 </div>
-具体的图形语法可以参考 [mermaid](http://knsv.github.io/mermaid/)
+当然你最好不能定义一些mermaid关键字, 比如sequenceDiagram, end等, 书写mermaid的报错信息可以打开控制台(F12)查看看
+
+具体的图形语法可以参考 [mermaid](http://knsv.github.io/mermaid/).
 
 ##试试看
 这一切只需要一个markpage.js
