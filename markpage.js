@@ -1,7 +1,7 @@
 /**
  * MarkPage - Markdown Page 
  *
- * An easy way to to write markdown document base on `showdownjs`, support table, code hightlight and navigate.
+ * An easy way to to write markdown document base on `showdownjs`, support table, code hightlight , mermaid charts and navigate.
  *
  * Just import one 'markpage.js' file in your html file, 
  *
@@ -79,7 +79,6 @@ function markpage() {
             ,'ul li {margin: 20px 5px;}'
             ,'p {line-height: 2;}'
             ,'code { padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; border-radius: 4px; }'
-            ,'.mermaid { max-height: 400px;}'
             ,'main { max-width: 90rem; }'
             ,'@media print {.docmenu { display:none; }  }'
             ,'@media screen and (max-width: 1180px) {.docmenu {position: relative; width:100%; height:auto;display:none;} }'
@@ -95,7 +94,14 @@ function markpage() {
      */
     function resourceOnload() {
         initShowdownExt();
-        hljs.initHighlightingOnLoad(); 
+        hljs.initHighlightingOnLoad();
+        mermaidAPI.initialize({
+            startOnLoad:false
+        });
+        mermaid.parseError = function(err,hash){
+            console.error(err);
+        };
+
         onLoadCallback.call(self);
     }
 
@@ -128,7 +134,7 @@ function markpage() {
         text = text.replace(/&lt;/ig, "<");
         text = text.replace(/&amp;/ig, "&");
         /**
-         * Setting Document In: https://github.com/showdownjs/showdown
+         * The Document of showdownjs At: https://github.com/showdownjs/showdown
          */
         var converter = new showdown.Converter({ 
             tables: true, //table support
@@ -140,17 +146,24 @@ function markpage() {
             ghCodeBlocks: true, 
             extensions: ['markpage']}),
             html      = converter.makeHtml(text);
-        var map = {};
+
+        //render mermaid charts
         $('.docbody').append(html).find('.mermaid').each(function(i, el){
+            var $this = $(el);
             var cb = function(svgGraph){
-                var id = $('<div />').html(svgGraph).find('svg').attr('id');
-                map[id].html(svgGraph);
+                var $svg = $('<div />').html(svgGraph).find('svg');
+                $this.html(svgGraph);
+
+                //resize height to match box
+                var height = parseInt($svg.attr('viewBox').split(/\s+/)[3] || 400);//data like: -50 -10 750 347
+                $this.css('height', (height + 50) + 'px');
             };
-            var id = 'graph-' + i;
-            var data = $(el).text().replace(/^\s+/, "");
-            map[id] = $(el);
+            var data = $this.text().replace(/^\s+/, "");
             if(mermaidAPI.parse(data)){
-                mermaidAPI.render(id, data, cb, el);
+                var graphId = 'graph-' + i;
+                mermaidAPI.render(graphId, data, cb, el);
+            }else{
+                $this.append('<p style="color:red">Mermaid syntax has error, you can open the conolse pannel(F12) to view error logger!</p>');
             }
         });
     }
