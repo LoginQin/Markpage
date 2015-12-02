@@ -163,7 +163,7 @@ function markpage() {
                 var graphId = 'graph-' + i;
                 mermaidAPI.render(graphId, data, cb, el);
             }else{
-                $this.append('<p style="color:red">Mermaid syntax has error, you can open the conolse pannel(F12) to view error logger!</p>');
+                $this.append('<p style="color:red">Mermaid syntax has error, you can open the console pannel(F12) to view error logger!</p>');
             }
         });
     }
