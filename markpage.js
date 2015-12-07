@@ -72,16 +72,21 @@ function markpage() {
     this.loadDocCss= function(){
         var css = [
             'h1 {padding:0 0 10px 0;}'
-            ,'.docmenu { position:fixed; height:100%; width:20%; }'
+            ,'.docmenu { position:relative;float:left; height:100%; width:20%; }'
+            ,'.docmenu .menu { position:fixed; width:20%;}'
             ,'h2, h3, h4{ padding: 0 0 5px 0; margin-top:1.5em; }'
             ,'h3, h4{ margin-bottom:0.5em; }'
             ,'h2 {border-bottom: 1px solid #eee; margin-bottom:16px;}'
             ,'ul li {margin: 20px 5px;}'
             ,'p {line-height: 2;}'
             ,'code { padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; border-radius: 4px; }'
-            ,'main { max-width: 90rem; }'
+            ,'main { float:left; max-width: 80%;}'
             ,'@media print {.docmenu { display:none; }  }'
-            ,'@media screen and (max-width: 1180px) {.docmenu {position: relative; width:100%; height:auto;display:none;} }'
+            ,'@media screen and (max-width:60rem) {'
+            , 'main { max-width:100%;width:100%;}'
+            , '.docmenu {position: relative; width: 100%;height:auto;}'
+            , '.docmenu .menu { position:relative; width:100%;}'
+            , '}'
             ];
         // can't not use $ before zepto/jquery load
         var style = self.mkdom('style', {type: 'text/css'});
