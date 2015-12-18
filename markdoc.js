@@ -1,5 +1,5 @@
 /**
- * Markdoc - Markdown document 
+ * MarkPage - Markdown Page 
  *
  * An easy way to to write markdown document base on `showdownjs`, support table, code hightlight and navigate.
  *
@@ -16,13 +16,13 @@
  * The final html file like as follow:
  * ----------------------------------------------------------
  *
- * <pre id="markdoc">
+ * <pre id="markpage">
  * ###markdown document
  * writing you document in here
  * </pre>
  *
  * <!-- only need to import markdoc.js file  -->
- * <script src="markdoc.js" type="text/javascript"></script
+ * <script src="markpage.js" type="text/javascript"></script
  *
  * ----------------------------------------------------------
  *
@@ -32,7 +32,7 @@
  * @email  qinwei081@gmail.com
  *
  **/
-function markdoc() {
+function markpage() {
     var self = this;
     var resourceNumExpect = 3; // expect load js resource number
     var loadedResource = 0; // current loaded
@@ -74,6 +74,7 @@ function markdoc() {
             'h1 {padding:0 0 20px 0}'
             ,'.docmenu { position:fixed;}'
             ,'ul li {margin:20px;}'
+            ,'@media print {.docmenu { display:none;  }  }'
             ];
         // can't not use $ before zepto/jquery load
         var style = self.mkdom('style', {type: 'text/css'});
@@ -109,10 +110,10 @@ function markdoc() {
 
     this.render = function(selector){
         var $doc = $(selector).hide();
-        $('body').append('<div class="docmenu"></div><main><section class="docbody"></section></main>');
-        $('#markdoc').hide();
+        $('body').append('<div class="docmenu"></div><main><section class="docbody"></section></main><footer>MarkPage</footer>');
+        $('#markpage').hide();
         var text = $doc.text(); 
-        var converter = new showdown.Converter({ tables: true, tasklists: true,  omitExtraWLInCodeBlocks: true,parseImgDimensions:true,  ghCodeBlocks: true, extensions: ['markdoc']}),
+        var converter = new showdown.Converter({ tables: true, tasklists: true,  omitExtraWLInCodeBlocks: true,parseImgDimensions:true,  ghCodeBlocks: true, extensions: ['markpage']}),
             html      = converter.makeHtml(text);
         $('.docbody').append(html);
     }
@@ -122,7 +123,7 @@ function markdoc() {
  * init showdown ext after load showdown.js
  */
 function initShowdownExt(){
-    var markdownMarkdocExt = function(converter) {
+    var markdownMarkpageExt = function(converter) {
         return [
         { type: 'output'
             , filter: function(text) {
@@ -141,10 +142,10 @@ function initShowdownExt(){
 
     // Client-side export
     if (typeof window !== 'undefined' && window.showdown && window.showdown.extensions) {
-        window.showdown.extensions.markdoc = markdownMarkdocExt;
+        window.showdown.extensions.markpage = markdownMarkpageExt;
     }
 };
 
 new markdoc().loadResource(function(){
-    this.render('#markdoc');
+    this.render('#markpage');
 });
