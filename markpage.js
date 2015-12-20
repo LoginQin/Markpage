@@ -73,11 +73,11 @@ function markpage() {
         var css = [
             'h1 {padding:0 0 10px 0;}'
             ,'.docmenu { position:relative;float:left; height:100%; width:20%; }'
-            ,'.docmenu .menu { position:fixed; width:20%;}'
+            ,'.docmenu .menu { position:fixed; width:20%; overflow-y: scroll; overflow-x: hidden; height: 100%; background-color: #fff;}'
             ,'h2, h3, h4{ padding: 0 0 5px 0; margin-top:1.5em; }'
             ,'h3, h4{ margin-bottom:0.5em; }'
             ,'h2 {border-bottom: 1px solid #eee; margin-bottom:16px;}'
-            ,'ul li {margin: 20px 5px;}'
+            ,'ul li {margin: 16px 5px;}'
             ,'p {line-height: 2;}'
             ,'code { padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; border-radius: 4px; }'
             ,'main { float:left; max-width: 80%;}'
