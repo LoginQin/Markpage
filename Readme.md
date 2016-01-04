@@ -37,6 +37,16 @@ Load CDN Resouce By cdnjs.com , English [markpage.en.html](http://cdnresource.du
 
 Load CDN Resouce By bootcdn.com, Chinese [markpage.cn.html](http://cdnresource.duowan.com/kkdict/1/markpage.html)
 
+###Use markpage.js by CDN
+If you don't like to download markpage.js file to local, You can use CDN service of my current company instead :)
+
+This way is convenient to copy a single HTML file to any place where can be connected to the Internet to View,  without markpage.js
+
+
+```javascript
+<script src="http://cdnresource.duowan.com/kkdict/1/markpage.js" type="text/javascript"></script>
+```
+
 ###About
 author qinwei
 
@@ -77,11 +87,21 @@ markpage适合用来写文本文档, 方便用版本控制,比如svn, Git保存�
 ```
 **注意: 不支持IE8或者更低版本的浏览器.**
 
+###使用CDN加载markpage.js
+如果你不喜欢将markpage.js文件下载到本地, 你可以使用我当前公司的CDN文件地址 :)
+
+这种方式很方便将HTML单独拷贝到任何可以联网的地方查看, 不需要都带着markpage.js
+
+```javascript
+<script src="http://cdnresource.duowan.com/kkdict/1/markpage.js" type="text/javascript"></script>
+```
+
 ###使用模板
 
 从cdnjs.com加载CDN资源,英文版 [markpage.en.html](http://cdnresource.duowan.com/kkdict/1/markpage.en.html)
 
 从bootcdn.com加载CDN资源,中文版 [markpage.cn.html](http://cdnresource.duowan.com/kkdict/1/markpage.html)
+
 
 
 ###License
