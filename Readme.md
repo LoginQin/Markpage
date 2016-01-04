@@ -1,5 +1,3 @@
-<meta charset="UTF-8" />
-<pre id="markpage" style="display:none;">
 #MarkPage - Markdown Page (English)
 
 An easy way to to write markdown document base on `showdownjs`, support table, code hightlight , mermaid charts and navigate.
@@ -78,7 +76,5 @@ markpage适合用来写文本文档, 方便用版本控制,比如svn, Git保存�
 [http://cdnresource.duowan.com/kkdict/1/markpage.html](http://cdnresource.duowan.com/kkdict/1/markpage.html)
 
 
-</pre>
-<script src="markpage.js"></script>
 
 
