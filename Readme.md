@@ -26,7 +26,7 @@ writing you document in here
 </textarea>
 
 <!-- only need to import markpage.js file  -->
-&ltscript src="markpage.js" type="text/javascript"></script>
+<script src="markpage.js" type="text/javascript"></script>
 ```
 
 
@@ -39,6 +39,10 @@ writing you document in here
 author qinwei
 
 email  qinwei081@gmail.com  qinwei081@foxmail.com
+
+###License
+
+MIT
 
 -------------------------------------
 
@@ -67,7 +71,7 @@ markpage适合用来写文本文档, 方便用版本控制,比如svn, Git保存�
 </textarea>
 
 <!-- only need to import markpage.js file  -->
-&ltscript src="markpage.js" type="text/javascript"></script>
+<script src="markpage.js" type="text/javascript"></script>
 ```
 **注意: 不支持IE8或者更低版本的浏览器.**
 
@@ -76,5 +80,7 @@ markpage适合用来写文本文档, 方便用版本控制,比如svn, Git保存�
 [http://cdnresource.duowan.com/kkdict/1/markpage.html](http://cdnresource.duowan.com/kkdict/1/markpage.html)
 
 
+###License
 
+MIT
 
