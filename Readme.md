@@ -33,7 +33,9 @@ writing you document in here
 **NOTE: Not support for IE8 or lower version. To make life better, upgrade your browser.**
 ###Useage Template
 
-[http://cdnresource.duowan.com/kkdict/1/markpage.en.html](http://cdnresource.duowan.com/kkdict/1/markpage.en.html)
+Load CDN Resouce By cdnjs.com , English [markpage.en.html](http://cdnresource.duowan.com/kkdict/1/markpage.en.html)
+
+Load CDN Resouce By bootcdn.com, Chinese [markpage.cn.html](http://cdnresource.duowan.com/kkdict/1/markpage.html)
 
 ###About
 author qinwei
@@ -77,7 +79,9 @@ markpage适合用来写文本文档, 方便用版本控制,比如svn, Git保存�
 
 ###使用模板
 
-[http://cdnresource.duowan.com/kkdict/1/markpage.html](http://cdnresource.duowan.com/kkdict/1/markpage.html)
+从cdnjs.com加载CDN资源,英文版 [markpage.en.html](http://cdnresource.duowan.com/kkdict/1/markpage.en.html)
+
+从bootcdn.com加载CDN资源,中文版 [markpage.cn.html](http://cdnresource.duowan.com/kkdict/1/markpage.html)
 
 
 ###License
