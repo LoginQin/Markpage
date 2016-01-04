@@ -31,7 +31,7 @@ writing you document in here
 
 
 **NOTE: Not support for IE8 or lower version. To make life better, upgrade your browser.**
-###Useage Template
+###Usage Template
 
 Load CDN Resouce By cdnjs.com , English [markpage.en.html](http://cdnresource.duowan.com/kkdict/1/markpage.en.html)
 
