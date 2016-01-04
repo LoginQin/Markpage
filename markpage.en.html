@@ -1,0 +1,105 @@
+<meta charset="UTF-8" />
+<textarea id="markpage" style="display:none;">
+#This is an amazing document
+one markpage.js can do everything.
+enter
+
+how about page break?
+
+##how about quote?
+
+>how about quote?
+>>it's quote
+
+>>also quote
+
+>>>quote too
+
+>>>quote too
+
+
+##table
+
+| h1 | h2 | h3 |
+|:---|:---|:----|
+|what| about | you|
+|what| about | you|
+
+
+##higlight code
+```html
+<pre id="markpage">
+
+###amazing document, insert HTML code, display OK?
+
+</pre>
+
+```
+
+###navigation
+  look at the left navigation of this page..
+  
+
+##Changes to the secondary menu
+
+####Insert level 4 menu, the above is a secondary menu,  skipping a grade 3,  display OK ? The title is a long long long long long long long...
+
+###change into level 3 menu
+   Each title linear parallel levels from top to bottom
+
+#####To insert a level 5, will be on a level 3 navigation sub-navigation. Only to 4 level menu will be shown by default
+
+Everything according to the principle from top to bottom, conform to the specification writing and reading
+
+```
+h1
+ |
+ +- h2
+    | 
+    + - h3
+ |   
+ +- h2 
+    | 
+    + - h3
+h1
+ | 
+ +- h3
+
+```
+
+##Use the mermaid syntax generated graphics
+mermaid is a simple markdown-like script language for generating charts from text via javascript.
+
+Insert the following code (including the div.mermaid) :
+```html
+<div class="mermaid">
+sequenceDiagram
+A->> B: Query
+B->> C: Forward query
+Note right of C: Thinking...
+C->> B: Response
+B->> A: Forward response
+
+</div>
+```
+#####Markpage also invokes the mermaid rendering and generate a sequence diagram
+<div class="mermaid">
+sequenceDiagram
+A->> B: Query
+B->> C: Forward query
+Note right of C: Thinking...
+C->> B: Response
+B->> A: Forward response
+
+</div>
+of course, you'd better don't define some mermaid keywords, such as sequenceDiagram, end, and so on.
+
+You can open the console (F12) check out the error message.
+
+The specific graphic syntax can refer to [mermaid](http://knsv.github.io/mermaid/).
+
+##Try to do..
+It only need a markpage.js
+
+</textarea>
+<script src="markpage.cdnjs.js" type="text/javascript"></script>
