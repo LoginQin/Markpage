@@ -38,12 +38,12 @@
  **/
 var ResConfig = {
     marx_css: 'https://cdnjs.cloudflare.com/ajax/libs/marx/1.3.0/marx.min.css',
-    mermaid_css: 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/0.5.5/mermaid.min.css',
+    mermaid_css: 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/0.5.8/mermaid.min.css',
 
     zepto_js: 'https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js',
     showdown_js: 'https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js',
     highlight_js: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js',
-    mermaid_js: 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/0.5.5/mermaid.min.js'
+    mermaid_js: 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/0.5.8/mermaid.min.js'
 };
 (function() {
     function markpage() {
